@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countdown Timer</title>
+    <style>
+        body {
+            text-align: center;
+            margin: 30px;
+        }
+        #countdown {
+            font-size: 20px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Countdown Timer (IST)</h1>
+    <p id="ist-time"></p>
+    <div id="countdown"></div>
+
+    <script>
+        function startCountdown(utcTime) {
+            function updateCountdown() {
+                const utcDate = new Date(utcTime);
+                const t = utcDate.toLocaleString                                                                                                                                                                            ("en-US",{timeZone:"Europe/London"});
+                console.log(t);
+                
+                const istOffset = -4 * 60 * 60 * 1000;
+                const istDate = new Date(utcDate.getTime() + istOffset);
+
+                const now = new Date();
+                const nowIST = new Date(now.getTime() + istOffset - now.getTimezoneOffset() * 60000);
+
+                document.getElementById("ist-time").innerText = `Event Time (IST): ${istDate.toLocaleString("en-IN", { timeZone: "Europe/London" })}`;
+
+                const timeDiff = istDate - nowIST;
+                if (timeDiff <= 0) {
+                    document.getElementById("countdown").innerText = "Time is up!";
+                    clearInterval(timer);
+                    return;
+                }
+                const days = Math.floor(timeDiff / (1000* 60 * 60 * 24));
+                const hours = Math.floor(timeDiff / (1000 * 60 * 60));
+                const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
+                
+
+                document.getElementById("countdown").innerText = `Time Left: ${days}d ${hours}h ${minutes}m ${seconds}s`;
+            }
+
+            updateCountdown(); 
+            const timer = setInterval(updateCountdown, 1000);
+        }
+
+        startCountdown("2025-03-26T12:00:00Z");
+    </script>
+
+</body>
+</html>

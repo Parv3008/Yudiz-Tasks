@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Country Timezone</title>
+    <style>
+        body {
+            text-align: center;
+            margin-top: 50px;
+        }
+        button {
+            margin: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Click a Country to See Its UTC Time</h2>
+
+    <button onclick="showTime('USA', 'America/New_York')">USA</button>
+    <button onclick="showTime('India', 'Asia/Kolkata')">India</button>
+    <button onclick="showTime('UK', 'Europe/London')">UK</button>
+    <button onclick="showTime('Japan', 'Asia/Tokyo')">Japan</button>
+    <button onclick="showTime('Australia', 'Australia/Sydney')">Australia</button>
+    <div id="result"></div>
+
+    <script>
+        function showTime(country, timeZone) {
+            const now = new Date();
+            const options = { timeZone, hour: '2-digit', minute: '2-digit', second: '2-digit', timeZoneName: 'short' };
+            const formattedTime = new Intl.DateTimeFormat('en-US', options).format(now);
+            const utcISO = now.toISOString();
+            const utcString = now.toUTCString();
+
+            document.getElementById("result").innerHTML = `
+                <strong>${country}</strong><br>
+                Local Time: ${formattedTime} <br>
+                UTC ISO: ${utcISO} <br>
+                UTC String: ${utcString}
+            `;
+        }
+    </script>
+
+</body>
+</html>
