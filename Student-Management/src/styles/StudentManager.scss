@@ -1,0 +1,57 @@
+body{
+    background-color: beige;
+}
+.student-manager{
+    text-align: center;
+    ul{
+        list-style: none;
+        li{
+            border: 1px solid black;
+            width: 400px;
+            margin: 10px auto;
+            padding: 10px;
+        }
+        .edit{
+            background-color: green;
+            color: white;
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+            border: none;
+        }
+        .delete{
+            background-color: red;
+            color: white;
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+            border: none;
+        }
+    }
+}
+.inputs{
+    label{
+        display: block;
+        margin: 10px 0;
+    }
+    input{
+        padding: 10px;
+    }
+    button{
+        padding: 10px 20px;
+        margin-top: 20px;
+    }
+    .add{
+        background-color: blue;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+    .random{
+        background-color: orange;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+
+}
