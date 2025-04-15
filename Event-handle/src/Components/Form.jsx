@@ -1,16 +1,9 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
+import PropTypes from "prop-types";
 import "../styles/main.scss";
 
-const Form = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    city: "",
-    address: "",
-    phone: "",
-    password: "",
-  });
+const Form = ({ heading, initialData, onFormSubmit, showAlert }) => {
+  const [formData, setFormData] = useState(initialData);
   const [title, setTitle] = useState("Double Click Me");
 
   const handleChange = (e) => {
@@ -21,34 +14,26 @@ const Form = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    onFormSubmit(formData); // using passed-in prop function
   };
 
   const handleCopy = () => {
-    const text = "test@gmail.com";
+    const text = "Test@test.com"
     navigator.clipboard.writeText(text);
-    alert("Message copied to clipboard!");
+    showAlert("Email copied to clipboard!");
   };
 
   const handleClick = () => {
-    alert("Form submitted successfully!");
+    showAlert("Form submitted successfully!");
   };
 
   const handleReset = () => {
-    setFormData({
-      name: "",
-      email: "",
-      city: "",
-      address: "",
-      phone: "",
-      password: "",
-    });
+    setFormData(initialData);
   };
 
   const handleTitleDoubleClick = () => {
-    setTitle((e) =>
-      e === "Double Click Me"
-        ? "Event Activated! 🎉"
-        : "Double Click Me"
+    setTitle((prev) =>
+      prev === "Double Click Me" ? "Event Activated! 🎉" : "Double Click Me"
     );
   };
 
@@ -56,11 +41,11 @@ const Form = () => {
     <div
       onContextMenu={(e) => {
         e.preventDefault();
-        alert("Right-click is disabled on this form!");
+        showAlert("Right-click is disabled on this form!");
       }}
     >
       <div className="form-container">
-        <h1>React Event Handling Form</h1>
+        <h1>{heading}</h1>
         <form onSubmit={handleSubmit}>
           <input
             type="text"
@@ -103,10 +88,9 @@ const Form = () => {
             value={formData.password}
             onChange={handleChange}
           />
-          <button type="button" onClick={() => handleCopy(formData.email)} className="copy">
+          <button type="button" onClick={handleCopy} className="copy">
             Copy Email to Clipboard
           </button>
-
           <button type="submit" onClick={handleClick}>
             Submit
           </button>
@@ -127,6 +111,13 @@ const Form = () => {
       </div>
     </div>
   );
+};
+
+Form.propTypes = {
+  heading: PropTypes.string,
+  initialData: PropTypes.object,
+  onFormSubmit: PropTypes.func,
+  showAlert: PropTypes.func,
 };
 
 export default Form;
