@@ -2,12 +2,12 @@ import React from "react";
 import Scorecard from "./components/Scorecard";
 
 function App() {
-
+  
   return (
     <>
-    <Scorecard />
+      <Scorecard/>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

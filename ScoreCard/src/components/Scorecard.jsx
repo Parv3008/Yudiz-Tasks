@@ -10,7 +10,7 @@ export const Scorecard = () => {
         <div className="header">
             <div className="result">
                 <span>RESULT</span>
-                <h4>{match_result.winner} Won by {match_result.win_by}</h4>
+                <h3>{match_result.winner} Won by {match_result.win_by}</h3>
             </div>
             <div className="player">
                 <p>Player of the Match: {player_of_the_match}</p>
@@ -25,7 +25,7 @@ export const Scorecard = () => {
                     <h4>{teams[0].abbreviation} {teams[0].win === "Y" && "🏆"}</h4>
                 </div>
                 <div className="score">
-                    <span>{teams[0].score}</span>
+                    <span>{teams[0].score}&nbsp;</span>
                 </div>
                 <div className="over">
                     <span>({teams[0].overs} ov)</span>
@@ -39,7 +39,7 @@ export const Scorecard = () => {
                     <h4>{teams[1].abbreviation} {teams[1].win === "Y" && "🏆"}</h4>
                 </div>
                 <div className="score">
-                    <span>{teams[1].score}</span>
+                    <span>{teams[1].score}&nbsp;</span>
                 </div>
                 <div className="over">
                     <span>({teams[1].overs} ov)</span>
